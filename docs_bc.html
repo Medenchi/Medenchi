@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MalinaCode Docs — Создание бота через BotFather</title>
+  <meta name="description" content="Пошаговая инструкция по созданию Telegram-бота через BotFather. Документация MalinaCode.">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%239B2948'/><text x='50' y='72' font-size='60' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'>M</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #000000;
+      --fg: #FFFFFF;
+      --accent: #9B2948;
+      --accent-hover: #B8345A;
+      --border: #333333;
+      --muted: #777777;
+      --surface: #0A0A0A;
+      --surface-hover: #111111;
+      --success: #22C55E;
+      --warning: #F59E0B;
+
+      --font-sans: 'Inter', -apple-system, 'SF Pro Display', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+
+      --container-max: 780px;
+      --space-xs: 8px;
+      --space-sm: 16px;
+      --space-md: 24px;
+      --space-lg: 48px;
+      --space-xl: 80px;
+      --space-2xl: 120px;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    ::selection {
+      background-color: var(--accent);
+      color: var(--fg);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding-left: var(--space-md);
+      padding-right: var(--space-md);
+    }
+
+    /* ============================================
+       NAVIGATION
+       ============================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background-color: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding-left: var(--space-md);
+      padding-right: var(--space-md);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--fg);
+      transition: color 0.2s;
+    }
+
+    .nav-logo:hover {
+      color: var(--accent);
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 20px;
+      background-color: var(--border);
+    }
+
+    .nav-section {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-back {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--fg);
+    }
+
+    /* ============================================
+       DOC HERO
+       ============================================ */
+    .doc-hero {
+      padding-top: calc(64px + var(--space-xl));
+      padding-bottom: var(--space-lg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: var(--space-md);
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    .doc-breadcrumb a {
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .doc-breadcrumb a:hover {
+      color: var(--fg);
+    }
+
+    .doc-breadcrumb-sep {
+      color: var(--border);
+    }
+
+    .doc-breadcrumb-current {
+      color: var(--fg);
+    }
+
+    .doc-hero-label {
+      display: inline-block;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-sm);
+      padding: 5px 12px;
+      border: 1px solid var(--accent);
+    }
+
+    .doc-hero h1 {
+      font-size: clamp(1.75rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: var(--space-sm);
+    }
+
+    .doc-hero h1 .accent-dot {
+      color: var(--accent);
+    }
+
+    .doc-hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 560px;
+    }
+
+    .doc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-xs) var(--space-sm);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--border);
+    }
+
+    .doc-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      letter-spacing: 0.02em;
+    }
+
+    .doc-meta-item svg {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       STEPS
+       ============================================ */
+    .doc-steps {
+      padding: var(--space-xl) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-steps-header {
+      margin-bottom: var(--space-lg);
+    }
+
+    .doc-steps-label {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .doc-steps-title {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .step {
+      position: relative;
+      padding: var(--space-md) 0 var(--space-lg) 0;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-sm);
+    }
+
+    .step:last-child {
+      padding-bottom: 0;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .step-num {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+      min-width: 28px;
+    }
+
+    .step h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .step-body {
+      padding-left: 42px;
+    }
+
+    .step-body p {
+      font-size: 0.9375rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .step-body p + p {
+      margin-top: var(--space-xs);
+    }
+
+    .step-highlight {
+      font-color: var(--fg);
+      color: var(--fg);
+      font-weight: 500;
+    }
+
+    .step-code {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      background-color: var(--surface-hover);
+      color: var(--accent);
+      padding: 2px 8px;
+      border: 1px solid var(--border);
+      letter-spacing: 0.02em;
+      word-break: break-all;
+    }
+
+    .step-example {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* Callout box inside steps */
+    .step-callout {
+      margin-top: var(--space-sm);
+      padding: var(--space-sm);
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .step-callout-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--warning);
+      margin-top: 1px;
+    }
+
+    .step-callout-icon.success {
+      color: var(--success);
+    }
+
+    .step-callout p {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .step-callout .step-highlight {
+      color: var(--fg);
+    }
+
+    /* Token visual box */
+    .token-visual {
+      margin-top: var(--space-sm);
+      padding: var(--space-sm) var(--space-md);
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+      overflow-x: auto;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .token-visual::before {
+      content: 'TOKEN';
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      font-size: 0.5625rem;
+      font-family: var(--font-mono);
+      color: var(--border);
+      letter-spacing: 0.1em;
+    }
+
+    /* ============================================
+       REQUIREMENTS BOX
+       ============================================ */
+    .doc-requirements {
+      padding: var(--space-xl) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .req-header {
+      margin-bottom: var(--space-md);
+    }
+
+    .req-label {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .req-title {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+
+    .req-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .req-item {
+      border: 1px solid var(--border);
+      margin-top: -1px;
+      padding: var(--space-md);
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: background-color 0.2s;
+    }
+
+    .req-item:hover {
+      background-color: var(--surface-hover);
+    }
+
+    .req-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+      color: var(--accent);
+      transition: border-color 0.2s;
+    }
+
+    .req-item:hover .req-icon {
+      border-color: var(--accent);
+    }
+
+    .req-content {
+      flex: 1;
+    }
+
+    .req-rule {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+
+    .req-detail {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .req-example {
+      font-family: var(--font-mono);
+      color: var(--accent);
+      font-size: 0.8125rem;
+    }
+
+    @media (min-width: 640px) {
+      .req-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .req-item {
+        margin-left: -1px;
+      }
+    }
+
+    /* ============================================
+       SUMMARY / QUICK REF
+       ============================================ */
+    .doc-summary {
+      padding: var(--space-xl) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .summary-box {
+      border: 1px solid var(--border);
+      padding: var(--space-md);
+      background-color: var(--surface);
+    }
+
+    .summary-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .summary-title svg {
+      color: var(--accent);
+    }
+
+    .summary-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .summary-list-item {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .summary-list-num {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      min-width: 20px;
+    }
+
+    .summary-list-item .step-code {
+      font-size: 0.75rem;
+    }
+
+    /* ============================================
+       NEXT STEPS / CTA
+       ============================================ */
+    .doc-next {
+      padding: var(--space-xl) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-next-inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .doc-next h2 {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+
+    .doc-next h2 .accent-dot {
+      color: var(--accent);
+    }
+
+    .doc-next p {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--accent);
+      color: var(--fg);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--fg);
+      color: var(--bg);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: transparent;
+      color: var(--fg);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--fg);
+    }
+
+    .doc-next-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    footer {
+      padding: var(--space-lg) 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .footer-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+
+    .footer-logo {
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .footer-link {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .footer-link:hover {
+      color: var(--fg);
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-xs);
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .footer-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .footer-status-dot {
+      width: 6px;
+      height: 6px;
+      background-color: #22C55E;
+      border-radius: 50%;
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (min-width: 768px) {
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .doc-hero {
+        padding-top: calc(64px + var(--space-2xl));
+        padding-bottom: var(--space-lg);
+      }
+
+      .doc-steps,
+      .doc-requirements,
+      .doc-summary,
+      .doc-next {
+        padding: var(--space-2xl) 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================
+       NAVIGATION
+       ============================ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <div class="nav-left">
+        <a href="#" class="nav-logo" aria-label="MalinaCode home">MalinaCode</a>
+        <div class="nav-divider"></div>
+        <span class="nav-section">Docs</span>
+      </div>
+      <a href="#" class="nav-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        На главную
+      </a>
+    </div>
+  </nav>
+
+  <!-- ============================
+       DOC HERO
+       ============================ -->
+  <section class="doc-hero">
+    <div class="container">
+      <div class="doc-breadcrumb">
+        <a href="#">MalinaDocs</a>
+        <span class="doc-breadcrumb-sep">/</span>
+        <a href="#">Telegram</a>
+        <span class="doc-breadcrumb-sep">/</span>
+        <span class="doc-breadcrumb-current">BotFather</span>
+      </div>
+
+      <span class="doc-hero-label">Руководство</span>
+
+      <h1>
+        Создание бота<br>
+        через BotFather<span class="accent-dot">.</span>
+      </h1>
+
+      <p class="doc-hero-desc">
+        Пошаговая инструкция по созданию Telegram-бота — от первого сообщения BotFather до получения API-токена.
+      </p>
+
+      <div class="doc-meta">
+        <div class="doc-meta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          ~3 мин
+        </div>
+        <div class="doc-meta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          7 шагов
+        </div>
+        <div class="doc-meta-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Beginner
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       STEPS
+       ============================ -->
+  <section class="doc-steps">
+    <div class="container">
+      <div class="doc-steps-header">
+        <div class="doc-steps-label">Step by step</div>
+        <h2 class="doc-steps-title">Пошаговая инструкция</h2>
+      </div>
+
+      <!-- Step 1 -->
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">01</span>
+          <h3>Найдите BotFather</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            В поиске Telegram введите <span class="step-code">@BotFather</span> и откройте чат с официальным ботом.
+            У него должна быть <span class="step-highlight">синяя галочка верификации</span> — это подтверждает подлинность.
+          </p>
+          <div class="step-callout">
+            <div class="step-callout-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <p>Будьте внимательны: существуют поддельные аккаунты. Настоящий BotFather всегда имеет галочку верификации и юзернейм <span class="step-highlight">@BotFather</span>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">02</span>
+          <h3>Запустите бота</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Нажмите кнопку <span class="step-highlight">«Start»</span> внизу экрана или вручную введите команду <span class="step-code">/start</span> и отправьте.
+            BotFather покажет список доступных команд.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">03</span>
+          <h3>Создайте нового бота</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Отправьте команду <span class="step-code">/newbot</span>. BotFather запустит процесс создания и попросит указать имя и юзернейм для вашего бота.
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">04</span>
+          <h3>Придумайте название</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Введите <span class="step-highlight">отображаемое имя</span> для бота — оно будет видно пользователям в списке чатов и в шапке диалога.
+          </p>
+          <p>
+            Например: <span class="step-example">Мой Тестовый Бот</span>
+          </p>
+          <div class="step-callout">
+            <div class="step-callout-icon success">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <p>Название можно будет <span class="step-highlight">изменить позже</span> через настройки BotFather.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">05</span>
+          <h3>Придумайте юзернейм</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Введите <span class="step-highlight">уникальное имя пользователя</span>, которое обязательно должно заканчиваться на <span class="step-code">bot</span>.
+          </p>
+          <p>
+            Например: <span class="step-example">my_test_bot</span> или <span class="step-example">TestBot</span>
+          </p>
+          <div class="step-callout">
+            <div class="step-callout-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <p>Юзернейм должен быть свободен. Если имя занято — попробуйте другой вариант. <span class="step-highlight">Изменить юзернейм после создания нельзя.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">06</span>
+          <h3>Получите токен</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Если юзернейм уникален, BotFather пришлёт сообщение с <span class="step-highlight">API-токеном</span> — длинной строкой символов, которая выглядит примерно так:
+          </p>
+          <div class="token-visual">
+            1234567890:ABCDefGhIJKlmnOPQrsTUVwxyz_0123456789
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="step">
+        <div class="step-header">
+          <span class="step-num">07</span>
+          <h3>Сохраните токен</h3>
+        </div>
+        <div class="step-body">
+          <p>
+            Скопируйте и <span class="step-highlight">надёжно сохраните</span> этот токен. Он необходим для управления ботом — подключения к конструкторам, фреймворкам или написания собственного кода.
+          </p>
+          <div class="step-callout">
+            <div class="step-callout-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <p><span class="step-highlight">Никогда не публикуйте токен</span> в открытых репозиториях, чатах или на скриншотах. Любой, у кого есть токен, может управлять вашим ботом. Если токен скомпрометирован — отзовите его командой <span class="step-code">/revoke</span> в BotFather.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       REQUIREMENTS
+       ============================ -->
+  <section class="doc-requirements">
+    <div class="container">
+      <div class="req-header">
+        <div class="req-label">Reference</div>
+        <h2 class="req-title">Требования к username</h2>
+      </div>
+
+      <div class="req-grid">
+        <!-- Rule 1 -->
+        <div class="req-item">
+          <div class="req-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+          </div>
+          <div class="req-content">
+            <div class="req-rule">Суффикс bot</div>
+            <div class="req-detail">Обязательно заканчивается на <span class="req-example">bot</span></div>
+          </div>
+        </div>
+
+        <!-- Rule 2 -->
+        <div class="req-item">
+          <div class="req-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4a2 2 0 0 1 2-2h8.5L20 7.5V20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-3"/><polyline points="14 2 14 8 20 8"/><line x1="2" y1="15" x2="14" y2="15"/></svg>
+          </div>
+          <div class="req-content">
+            <div class="req-rule">Допустимые символы</div>
+            <div class="req-detail">Латинские буквы, цифры и подчёркивания</div>
+          </div>
+        </div>
+
+        <!-- Rule 3 -->
+        <div class="req-item">
+          <div class="req-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <div class="req-content">
+            <div class="req-rule">Длина</div>
+            <div class="req-detail">От 5 до 32 символов</div>
+          </div>
+        </div>
+
+        <!-- Rule 4 -->
+        <div class="req-item">
+          <div class="req-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="req-content">
+            <div class="req-rule">Уникальность</div>
+            <div class="req-detail">Имя не должно быть занято другим ботом</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       QUICK SUMMARY
+       ============================ -->
+  <section class="doc-summary">
+    <div class="container">
+      <div class="summary-box">
+        <div class="summary-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Краткая сводка
+        </div>
+        <div class="summary-list">
+          <div class="summary-list-item">
+            <span class="summary-list-num">01</span>
+            Откройте <span class="step-code">@BotFather</span> в Telegram
+          </div>
+          <div class="summary-list-item">
+            <span class="summary-list-num">02</span>
+            Нажмите Start или отправьте <span class="step-code">/start</span>
+          </div>
+          <div class="summary-list-item">
+            <span class="summary-list-num">03</span>
+            Отправьте <span class="step-code">/newbot</span>
+          </div>
+          <div class="summary-list-item">
+            <span class="summary-list-num">04</span>
+            Введите название → юзернейм (с суффиксом bot)
+          </div>
+          <div class="summary-list-item">
+            <span class="summary-list-num">05</span>
+            Скопируйте и сохраните полученный API-токен
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       NEXT STEPS / CTA
+       ============================ -->
+  <section class="doc-next">
+    <div class="container">
+      <div class="doc-next-inner">
+        <h2>Бот создан<span class="accent-dot">.</span><br>Что дальше?</h2>
+        <p>Скиньте полученный токен в личные сообщения работнику студии, мы начнем разработку.</p>
+        <div class="doc-next-actions">
+          <a href="https://t.me/malinacode" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            Обсудить проект
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </a>
+          <a href="#" class="btn-secondary">
+            Вся документация
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       FOOTER
+       ============================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <span class="footer-logo">MalinaCode</span>
+          <div class="footer-links">
+            <a href="#" class="footer-link">Docs</a>
+            <a href="#" class="footer-link">Services</a>
+            <a href="https://t.me/malinacode" target="_blank" rel="noopener noreferrer" class="footer-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Telegram
+            </a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">MalinaCode &copy; 2026. All rights reserved.</span>
+          <span class="footer-status">
+            <span class="footer-status-dot"></span>
+            All systems operational
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

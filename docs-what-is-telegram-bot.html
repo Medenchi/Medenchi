@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Что такое Telegram-бот — MalinaCode Docs</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%239B2948'/><text x='50' y='72' font-size='60' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'>M</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root{--bg:#000;--fg:#fff;--accent:#9B2948;--border:#333;--muted:#777;--surface:#0A0A0A;--surface-hover:#111;--font-sans:'Inter',-apple-system,sans-serif;--font-mono:'SF Mono','Fira Code','Consolas',monospace;--max:780px;--xs:8px;--sm:16px;--md:24px;--lg:48px;--xl:80px;--2xl:120px}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}body{background:var(--bg);color:var(--fg);font-family:var(--font-sans);font-size:16px;line-height:1.5;overflow-x:hidden}a{color:inherit;text-decoration:none}::selection{background:var(--accent);color:var(--fg)}.container{max-width:var(--max);margin:0 auto;padding:0 var(--md)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:var(--max);margin:0 auto;padding:0 var(--md)}.nav-left{display:flex;align-items:center;gap:12px}.nav-logo{font-size:1rem;font-weight:700;letter-spacing:-.03em;transition:color .2s}.nav-logo:hover{color:var(--accent)}.nav-divider{width:1px;height:20px;background:var(--border)}.nav-section{font-size:.8125rem;font-weight:500;color:var(--muted)}.nav-back{font-size:.8125rem;font-weight:500;color:var(--muted);display:inline-flex;align-items:center;gap:6px;transition:color .2s}.nav-back:hover{color:var(--fg)}
+.doc-hero{padding-top:calc(64px + var(--xl));padding-bottom:var(--lg);border-bottom:1px solid var(--border)}.crumbs{display:flex;align-items:center;gap:8px;margin-bottom:var(--md);font-size:.75rem;color:var(--muted)}.crumbs a{color:var(--muted);transition:color .2s}.crumbs a:hover{color:var(--fg)}.crumbs-sep{color:var(--border)}.crumbs-cur{color:var(--fg)}.doc-label{display:inline-block;font-size:.6875rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--sm);padding:5px 12px;border:1px solid var(--accent)}.doc-hero h1{font-size:clamp(1.75rem,5vw,3rem);font-weight:700;line-height:1.08;letter-spacing:-.04em;margin-bottom:var(--sm)}.accent{color:var(--accent)}.doc-desc{font-size:1rem;color:var(--muted);line-height:1.6;max-width:560px}
+.doc{padding:var(--xl) 0;border-bottom:1px solid var(--border)}.doc h2{font-size:1.5rem;font-weight:700;letter-spacing:-.03em;margin-bottom:var(--md);margin-top:var(--lg)}.doc h2:first-child{margin-top:0}.doc p{font-size:.9375rem;color:var(--muted);line-height:1.7;margin-bottom:var(--sm)}.doc p strong{color:var(--fg);font-weight:600}
+.dl{margin-bottom:var(--md)}.dl-item{display:flex;align-items:baseline;gap:12px;padding:10px 0;border-top:1px solid var(--border);font-size:.9375rem;color:var(--muted);line-height:1.6}.dl-item:last-child{border-bottom:1px solid var(--border)}.dl-dot{width:6px;height:6px;background:var(--accent);flex-shrink:0;margin-top:8px}
+.callout{padding:var(--sm) var(--md);border:1px solid var(--border);background:var(--surface);margin-bottom:var(--md);display:flex;gap:12px;align-items:flex-start}.callout-icon{flex-shrink:0;color:var(--accent);margin-top:2px}.callout p{font-size:.8125rem;color:var(--muted);line-height:1.6;margin:0}.callout strong{color:var(--fg)}
+.grid{display:grid;grid-template-columns:1fr;gap:0;margin-bottom:var(--md)}.grid-item{border:1px solid var(--border);margin-top:-1px;padding:var(--md);transition:background .2s}.grid-item:hover{background:var(--surface-hover)}.grid-item h4{font-size:.9375rem;font-weight:600;margin-bottom:4px}.grid-item p{font-size:.8125rem;color:var(--muted);line-height:1.5;margin:0}@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}.grid-item{margin-left:-1px}}
+.doc-nav{padding:var(--lg) 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:var(--sm);flex-wrap:wrap}.doc-nav a{display:flex;flex-direction:column;gap:4px;padding:var(--sm);border:1px solid var(--border);transition:border-color .2s,background .2s;min-width:200px;flex:1}.doc-nav a:hover{border-color:var(--accent);background:var(--surface)}.doc-nav-label{font-size:.6875rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}.doc-nav-title{font-size:.9375rem;font-weight:600}
+footer{padding:var(--lg) 0}.f-inner{display:flex;flex-direction:column;gap:var(--md)}.f-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sm)}.f-logo{font-size:.875rem;font-weight:700}.f-links{display:flex;align-items:center;gap:var(--md)}.f-link{font-size:.8125rem;color:var(--muted);display:inline-flex;align-items:center;gap:6px;transition:color .2s}.f-link:hover{color:var(--fg)}.f-bot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--xs);padding-top:var(--md);border-top:1px solid var(--border)}.f-copy{font-size:.75rem;color:var(--muted)}.f-status{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;color:var(--muted)}.f-dot{width:6px;height:6px;background:#22C55E;border-radius:50%}
+@media(min-width:768px){.doc-hero{padding-top:calc(64px + var(--2xl))}.doc{padding:var(--2xl) 0}}
+  </style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-inner"><div class="nav-left"><a href="index.html" class="nav-logo">MalinaCode</a><div class="nav-divider"></div><span class="nav-section">Docs</span></div><a href="docs-index.html" class="nav-back"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>Все доки</a></div></nav>
+
+<section class="doc-hero"><div class="container">
+  <div class="crumbs"><a href="docs-index.html">Docs</a><span class="crumbs-sep">/</span><a href="docs-index.html">Основы</a><span class="crumbs-sep">/</span><span class="crumbs-cur">Telegram-бот</span></div>
+  <span class="doc-label">Основы</span>
+  <h1>Что такое Telegram-бот<span class="accent">.</span></h1>
+  <p class="doc-desc">Простым языком о том, как работают боты, что они умеют и зачем нужны бизнесу.</p>
+</div></section>
+
+<section class="doc"><div class="container">
+  <h2>Если коротко</h2>
+  <p><strong>Telegram-бот</strong> — это программа, которая работает внутри мессенджера Telegram. Пользователь пишет боту сообщение или нажимает кнопку — бот отвечает. Всё происходит в привычном интерфейсе чата.</p>
+  <p>Бот не спит, не уходит на обед и может обслуживать тысячи пользователей одновременно. Это как сотрудник, который доступен <strong>24/7</strong> и никогда не ошибается в рутинных задачах.</p>
+
+  <h2>Что умеют боты</h2>
+  <div class="grid">
+    <div class="grid-item"><h4>Отвечать на вопросы</h4><p>FAQ, информация о товарах, расписание, прайс-листы</p></div>
+    <div class="grid-item"><h4>Принимать заказы</h4><p>Запись на услуги, бронирование, оформление покупок</p></div>
+    <div class="grid-item"><h4>Принимать оплату</h4><p>Встроенные платежи Telegram, банковские карты, крипто</p></div>
+    <div class="grid-item"><h4>Отправлять уведомления</h4><p>Напоминания, статусы заказов, новости, рассылки</p></div>
+    <div class="grid-item"><h4>Работать с AI</h4><p>Генерация текста, ответы на основе GPT, классификация</p></div>
+    <div class="grid-item"><h4>Интегрироваться</h4><p>CRM, Google-сервисы, 1С, любые внешние API</p></div>
+  </div>
+
+  <h2>Как это работает</h2>
+  <div class="dl">
+    <div class="dl-item"><div class="dl-dot"></div>Пользователь пишет сообщение или нажимает кнопку</div>
+    <div class="dl-item"><div class="dl-dot"></div>Telegram отправляет данные на сервер бота</div>
+    <div class="dl-item"><div class="dl-dot"></div>Программа обрабатывает запрос и формирует ответ</div>
+    <div class="dl-item"><div class="dl-dot"></div>Ответ отправляется обратно через Telegram API</div>
+    <div class="dl-item"><div class="dl-dot"></div>Пользователь видит ответ в чате за доли секунды</div>
+  </div>
+
+  <h2>Зачем бизнесу бот</h2>
+  <div class="dl">
+    <div class="dl-item"><div class="dl-dot"></div><strong>Экономия времени</strong> — автоматизация рутины: ответы, запись, напоминания</div>
+    <div class="dl-item"><div class="dl-dot"></div><strong>Доступность</strong> — клиенты уже в Telegram, не нужно скачивать приложение</div>
+    <div class="dl-item"><div class="dl-dot"></div><strong>Скорость</strong> — бот отвечает мгновенно, 24 часа в сутки</div>
+    <div class="dl-item"><div class="dl-dot"></div><strong>Низкий порог входа</strong> — не нужен сайт, магазин или приложение</div>
+    <div class="dl-item"><div class="dl-dot"></div><strong>Масштабируемость</strong> — 10 и 10 000 пользователей обслуживаются одинаково</div>
+  </div>
+
+  <h2>Бот vs приложение vs сайт</h2>
+  <div class="grid">
+    <div class="grid-item"><h4>Telegram-бот</h4><p>Быстрый старт, без установки, работает в мессенджере. Идеален для автоматизации.</p></div>
+    <div class="grid-item"><h4>Мобильное приложение</h4><p>Дорого, долго, нужна установка. Подходит для сложных продуктов.</p></div>
+    <div class="grid-item"><h4>Сайт</h4><p>Универсален для SEO. Но для чата и автоматизации — бот удобнее.</p></div>
+    <div class="grid-item"><h4>Mini App</h4><p>Веб-приложение внутри Telegram. Лучшее из двух миров.</p></div>
+  </div>
+
+  <div class="callout"><div class="callout-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p><strong>Хотите бота для бизнеса?</strong> Мы проектируем и разрабатываем ботов под любые задачи. Напишите — обсудим вашу идею.</p></div>
+</div></section>
+
+<div class="container"><div class="doc-nav">
+  <a href="docs-index.html"><span class="doc-nav-label">← Назад</span><span class="doc-nav-title">Все документы</span></a>
+  <a href="docs-what-is-mini-app.html" style="text-align:right"><span class="doc-nav-label">Далее →</span><span class="doc-nav-title">Что такое Mini App</span></a>
+</div></div>
+
+<footer><div class="container"><div class="f-inner"><div class="f-top"><span class="f-logo">MalinaCode</span><div class="f-links"><a href="docs-index.html" class="f-link">Docs</a><a href="https://t.me/malinacode" target="_blank" rel="noopener noreferrer" class="f-link"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Telegram</a></div></div><div class="f-bot"><span class="f-copy">MalinaCode © 2025</span><span class="f-status"><span class="f-dot"></span>All systems operational</span></div></div></div></footer>
+
+</body>
+</html>

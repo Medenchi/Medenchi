@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MalinaCode Docs — Документация</title>
+  <meta name="description" content="Полная документация MalinaCode. Всё о Telegram-ботах, Mini Apps, интеграциях и разработке.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%239B2948'/><text x='50' y='72' font-size='60' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'>M</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#000;--fg:#fff;--accent:#9B2948;--accent-hover:#B8345A;--border:#333;--muted:#777;--surface:#0A0A0A;--surface-hover:#111;--font-sans:'Inter',-apple-system,'SF Pro Display','Roboto','Helvetica Neue',Arial,sans-serif;--font-mono:'SF Mono','Fira Code','Cascadia Code','JetBrains Mono','Consolas',monospace;--container-max:1120px;--space-xs:8px;--space-sm:16px;--space-md:24px;--space-lg:48px;--space-xl:80px;--space-2xl:120px}*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}body{background:var(--bg);color:var(--fg);font-family:var(--font-sans);font-size:16px;line-height:1.5;overflow-x:hidden}a{color:inherit;text-decoration:none}ul,ol{list-style:none}::selection{background:var(--accent);color:var(--fg)}:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.container{width:100%;max-width:var(--container-max);margin:0 auto;padding-left:var(--space-md);padding-right:var(--space-md)}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,0,0,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}.nav-left{display:flex;align-items:center;gap:12px}.nav-logo{font-size:1rem;font-weight:700;letter-spacing:-.03em;transition:color .2s}.nav-logo:hover{color:var(--accent)}.nav-divider{width:1px;height:20px;background:var(--border)}.nav-section{font-size:.8125rem;font-weight:500;color:var(--muted)}.nav-back{font-size:.8125rem;font-weight:500;color:var(--muted);display:inline-flex;align-items:center;gap:6px;transition:color .2s}.nav-back:hover{color:var(--fg)}
+    .doc-hero{padding-top:calc(64px + var(--space-xl));padding-bottom:var(--space-lg);border-bottom:1px solid var(--border)}.doc-hero-label{display:inline-block;font-size:.6875rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--space-sm);padding:5px 12px;border:1px solid var(--accent)}.doc-hero h1{font-size:clamp(1.75rem,5vw,3rem);font-weight:700;line-height:1.08;letter-spacing:-.04em;margin-bottom:var(--space-sm)}.accent-dot{color:var(--accent)}.doc-hero-desc{font-size:1rem;color:var(--muted);line-height:1.6;max-width:560px}.doc-hero-search{margin-top:var(--space-md);display:flex;max-width:480px}.doc-hero-search input{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--fg);font-family:var(--font-sans);font-size:.875rem;padding:14px 18px;outline:none;transition:border-color .2s}.doc-hero-search input:focus{border-color:var(--accent)}.doc-hero-search input::placeholder{color:var(--muted)}
+    .doc-cats{padding:var(--space-xl) 0;border-bottom:1px solid var(--border)}.cat-label{font-size:.6875rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--space-xs)}.cat-title{font-size:clamp(1.25rem,3vw,1.75rem);font-weight:700;letter-spacing:-.03em;line-height:1.15;margin-bottom:var(--space-md)}
+    .cat-grid{display:grid;grid-template-columns:1fr;gap:0}.cat-card{border:1px solid var(--border);margin-top:-1px;padding:var(--space-md);display:flex;align-items:flex-start;gap:14px;transition:background .2s;text-decoration:none;color:var(--fg)}.cat-card:hover{background:var(--surface-hover)}.cat-card-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);flex-shrink:0;color:var(--muted);transition:color .2s,border-color .2s}.cat-card:hover .cat-card-icon{color:var(--accent);border-color:var(--accent)}.cat-card-content{flex:1;min-width:0}.cat-card h3{font-size:.9375rem;font-weight:600;letter-spacing:-.01em;margin-bottom:4px;display:flex;align-items:center;gap:8px}.cat-card p{font-size:.8125rem;color:var(--muted);line-height:1.5}.cat-card-arrow{color:var(--border);flex-shrink:0;transition:color .2s,transform .2s}.cat-card:hover .cat-card-arrow{color:var(--accent);transform:translateX(3px)}.cat-card-tag{font-size:.5625rem;font-family:var(--font-mono);color:var(--accent);letter-spacing:.06em;padding:2px 6px;border:1px solid var(--accent);text-transform:uppercase;flex-shrink:0}
+    @media(min-width:640px){.cat-grid{grid-template-columns:1fr 1fr}.cat-card{margin-left:-1px}}@media(min-width:768px){.doc-hero{padding-top:calc(64px + var(--space-2xl))}.doc-cats{padding:var(--space-2xl) 0}}
+    footer{padding:var(--space-lg) 0}.footer-inner{display:flex;flex-direction:column;gap:var(--space-md)}.footer-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-sm)}.footer-logo{font-size:.875rem;font-weight:700;letter-spacing:-.02em}.footer-links{display:flex;align-items:center;gap:var(--space-md)}.footer-link{font-size:.8125rem;color:var(--muted);display:inline-flex;align-items:center;gap:6px;transition:color .2s}.footer-link:hover{color:var(--fg)}.footer-bottom{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--space-xs);padding-top:var(--space-md);border-top:1px solid var(--border)}.footer-copy{font-size:.75rem;color:var(--muted)}.footer-status{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;color:var(--muted)}.footer-status-dot{width:6px;height:6px;background:#22C55E;border-radius:50%}
+  </style>
+</head>
+<body>
+
+<nav class="nav"><div class="container nav-inner"><div class="nav-left"><a href="index.html" class="nav-logo">MalinaCode</a><div class="nav-divider"></div><span class="nav-section">Docs</span></div><a href="index.html" class="nav-back"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>На главную</a></div></nav>
+
+<section class="doc-hero">
+  <div class="container">
+    <span class="doc-hero-label">Documentation</span>
+    <h1>MalinaCode Docs<span class="accent-dot">.</span></h1>
+    <p class="doc-hero-desc">Полная база знаний по Telegram-ботам, Mini Apps, интеграциям и разработке. Всё, что нужно знать перед стартом проекта.</p>
+    <div class="doc-hero-search"><input type="text" placeholder="Поиск по документации..."></div>
+  </div>
+</section>
+
+<!-- ===== ОСНОВЫ ===== -->
+<section class="doc-cats">
+  <div class="container">
+    <div class="cat-label">Basics</div>
+    <h2 class="cat-title">Основы</h2>
+    <div class="cat-grid">
+      <a href="docs-what-is-telegram-bot.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect x="8" y="2" width="13" height="20" rx="1"/><path d="M3 7v13a2 2 0 0 0 2 2h5"/></svg></div>
+        <div class="cat-card-content"><h3>Что такое Telegram-бот</h3><p>Как работают боты, что умеют и зачем они бизнесу</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-what-is-mini-app.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+        <div class="cat-card-content"><h3>Что такое Mini App</h3><p>Полноценные веб-приложения внутри Telegram</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-what-is-api.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <div class="cat-card-content"><h3>Что такое API</h3><p>Как программы общаются друг с другом</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-what-is-database.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+        <div class="cat-card-content"><h3>Что такое база данных</h3><p>Где и как хранятся данные вашего бота</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-what-is-hosting.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+        <div class="cat-card-content"><h3>Что такое хостинг</h3><p>Серверы, домены и где живёт ваш бот</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-bot-vs-miniapp.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><path d="M11 18H8a2 2 0 0 1-2-2V9"/></svg></div>
+        <div class="cat-card-content"><h3>Бот vs Mini App</h3><p>Что выбрать для вашего проекта</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TELEGRAM-БОТЫ ===== -->
+<section class="doc-cats">
+  <div class="container">
+    <div class="cat-label">Telegram Bots</div>
+    <h2 class="cat-title">Telegram-боты</h2>
+    <div class="cat-grid">
+      <a href="docs-botfather.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+        <div class="cat-card-content"><h3>Создание бота через BotFather <span class="cat-card-tag">начни здесь</span></h3><p>Пошаговая инструкция от первого сообщения до токена</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-bot-commands.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></div>
+        <div class="cat-card-content"><h3>Команды и меню бота</h3><p>Настройка команд, кнопок и навигации</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-bot-payments.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <div class="cat-card-content"><h3>Платежи в ботах</h3><p>Приём оплаты через Telegram Payments и сторонние системы</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-bot-inline.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="cat-card-content"><h3>Inline-режим</h3><p>Использование бота прямо из строки ввода в любом чате</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-bot-groups.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="cat-card-content"><h3>Боты в группах и каналах</h3><p>Модерация, автоответы и управление сообществом</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-bot-notifications.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+        <div class="cat-card-content"><h3>Рассылки и уведомления</h3><p>Массовые рассылки, напоминания и триггерные сообщения</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-bot-analytics.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="cat-card-content"><h3>Аналитика бота</h3><p>Метрики, статистика и отслеживание эффективности</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MINI APPS ===== -->
+<section class="doc-cats">
+  <div class="container">
+    <div class="cat-label">Mini Apps</div>
+    <h2 class="cat-title">Telegram Mini Apps</h2>
+    <div class="cat-grid">
+      <a href="docs-miniapp-design.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+        <div class="cat-card-content"><h3>Дизайн Mini Apps</h3><p>Принципы нативного UI внутри Telegram</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-miniapp-payments.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="cat-card-content"><h3>Платежи в Mini Apps</h3><p>Stars, TON, банковские карты и другие способы оплаты</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-miniapp-publish.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+        <div class="cat-card-content"><h3>Публикация Mini App</h3><p>Как запустить приложение и сделать его доступным пользователям</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ИНТЕГРАЦИИ ===== -->
+<section class="doc-cats">
+  <div class="container">
+    <div class="cat-label">Integrations</div>
+    <h2 class="cat-title">Интеграции</h2>
+    <div class="cat-grid">
+      <a href="docs-integration-google.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <div class="cat-card-content"><h3>Google-сервисы</h3><p>Calendar, Sheets, Drive — синхронизация с ботом</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-integration-crm.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="cat-card-content"><h3>CRM-системы</h3><p>amoCRM, Bitrix24, HubSpot — связь с ботом</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-integration-payments.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <div class="cat-card-content"><h3>Платёжные системы</h3><p>ЮKassa, Stripe, TON, Робокасса — подключение</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-integration-ai.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a6 6 0 0 0-6 6c0 1.6.6 3 1.7 4.1L12 17l4.3-4.9A6 6 0 0 0 12 2z"/><path d="M12 17v5"/></svg></div>
+        <div class="cat-card-content"><h3>AI и нейросети</h3><p>GPT, классификация, генерация — интеграция в бота</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ДЛЯ КЛИЕНТОВ ===== -->
+<section class="doc-cats">
+  <div class="container">
+    <div class="cat-label">For clients</div>
+    <h2 class="cat-title">Для клиентов</h2>
+    <div class="cat-grid">
+      <a href="docs-how-to-brief.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="cat-card-content"><h3>Как составить ТЗ <span class="cat-card-tag">важно</span></h3><p>Шаблон и советы для описания задачи</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-what-affects-price.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="cat-card-content"><h3>Что влияет на стоимость</h3><p>Из чего складывается цена разработки</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-hosting-explained.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+        <div class="cat-card-content"><h3>Хостинг простым языком</h3><p>Зачем нужен сервер и сколько это стоит</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-support.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="cat-card-content"><h3>Поддержка после запуска</h3><p>Что входит в поддержку и как она работает</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="docs-security.html" class="cat-card">
+        <div class="cat-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <div class="cat-card-content"><h3>Безопасность</h3><p>Защита данных, токенов и пользователей</p></div>
+        <svg class="cat-card-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="container"><div class="footer-inner"><div class="footer-top"><span class="footer-logo">MalinaCode</span><div class="footer-links"><a href="docs-index.html" class="footer-link">Docs</a><a href="https://t.me/malinacode" target="_blank" rel="noopener noreferrer" class="footer-link"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Telegram</a></div></div><div class="footer-bottom"><span class="footer-copy">MalinaCode &copy; 2025</span><span class="footer-status"><span class="footer-status-dot"></span>All systems operational</span></div></div></div></footer>
+
+</body>
+</html>

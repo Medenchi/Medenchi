@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Дашборд — MalinaPreza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="./dashboard.css" />
+  </head>
+  <body>
+    <div class="dashboard">
+      <!-- Навбар -->
+      <nav class="dashboard-navbar">
+        <div class="navbar-content">
+          <div class="navbar-left">
+            <a href="/" class="logo">MalinaPreza</a>
+          </div>
+          <div class="navbar-right">
+            <span class="user-email" id="userEmail"></span>
+            <button class="logout-btn" id="logoutBtn">Выход</button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Основной контент -->
+      <main class="dashboard-main">
+        <div class="dashboard-container">
+          <!-- Заголовок -->
+          <section class="dashboard-header">
+            <h1>Мои презентации</h1>
+            <p>Создавай красивые презентации с помощью ИИ</p>
+          </section>
+
+          <!-- Кнопка создания -->
+          <section class="create-section">
+            <button class="create-btn" id="createBtn">
+              <span class="plus-icon">+</span>
+              <div>
+                <div class="create-btn-title">Создать новую</div>
+                <div class="create-btn-subtitle">
+                  Нажми, чтобы начать
+                </div>
+              </div>
+            </button>
+          </section>
+
+          <!-- Список презентаций -->
+          <section class="presentations-section">
+            <h2 class="section-title">Недавние</h2>
+            <div class="presentations-grid" id="presentationsGrid">
+              <!-- Здесь появятся карточки презентаций -->
+            </div>
+
+            <div class="empty-state" id="emptyState">
+              <div class="empty-state-icon">📊</div>
+              <h3>Презентаций ещё нет</h3>
+              <p>Нажми кнопку выше, чтобы создать первую</p>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- Модальное окно создания презентации -->
+    <div class="modal" id="createModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Создать новую презентацию</h2>
+          <button class="modal-close" id="closeModal">&times;</button>
+        </div>
+
+        <form id="createPresentationForm">
+          <div class="form-group">
+            <label class="form-label">Название презентации</label>
+            <input
+              type="text"
+              class="form-input"
+              id="presentationName"
+              placeholder="Например: История России"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Тема или ключевые слова</label>
+            <textarea
+              class="form-input"
+              id="presentationTopic"
+              placeholder="Опиши, о чём должна быть презентация..."
+              rows="4"
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Количество слайдов</label>
+            <select class="form-input" id="slideCount">
+              <option value="5">5 слайдов</option>
+              <option value="10" selected>10 слайдов</option>
+              <option value="15">15 слайдов</option>
+              <option value="20">20 слайдов</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            Создать презентацию
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script src="./dashboard.js"></script>
+  </body>
+</html>

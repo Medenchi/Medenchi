@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Регистрация — MalinaPreza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      .auth-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background: #000000;
+      }
+
+      .auth-card {
+        background: #101010;
+        border-radius: 2rem;
+        padding: 2rem;
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .auth-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .auth-title {
+        font-size: 28px;
+        color: #E1E0CC;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .auth-subtitle {
+        color: #888888;
+        font-size: 14px;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-label {
+        display: block;
+        color: #DEDBC8;
+        font-size: 14px;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: #212121;
+        border: 1px solid #333333;
+        border-radius: 0.5rem;
+        color: #E1E0CC;
+        font-size: 14px;
+        transition: border-color 0.2s;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: #DEDBC8;
+      }
+
+      .form-input::placeholder {
+        color: #666666;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background: #DEDBC8;
+        color: black;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+
+      .submit-btn:hover {
+        opacity: 0.9;
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .form-footer {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 14px;
+        color: #888888;
+      }
+
+      .form-footer a {
+        color: #DEDBC8;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .form-footer a:hover {
+        color: #E1E0CC;
+      }
+
+      .error-message {
+        background: #C0392B;
+        color: white;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 13px;
+        margin-bottom: 1rem;
+        display: none;
+      }
+
+      .error-message.show {
+        display: block;
+      }
+
+      .success-message {
+        background: #27ae60;
+        color: white;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 13px;
+        margin-bottom: 1rem;
+        display: none;
+      }
+
+      .success-message.show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h1 class="auth-title">Создать аккаунт</h1>
+          <p class="auth-subtitle">Присоединись к MalinaPreza бесплатно</p>
+        </div>
+
+        <form id="registerForm">
+          <div class="error-message" id="errorMessage"></div>
+          <div class="success-message" id="successMessage"></div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              placeholder="your@email.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Пароль</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-input"
+              placeholder="Минимум 8 символов"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="confirmPassword">
+              Повторить пароль
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              class="form-input"
+              placeholder="Повторить пароль"
+              required
+            />
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Зарегистрироваться
+          </button>
+        </form>
+
+        <div class="form-footer">
+          Уже есть аккаунт? <a href="./login.html">Войти</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="./auth.js"></script>
+  </body>
+</html>

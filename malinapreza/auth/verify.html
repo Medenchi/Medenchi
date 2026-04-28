@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Подтверждение — MalinaPreza</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+    <style>
+      .auth-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        background: #000000;
+      }
+
+      .auth-card {
+        background: #101010;
+        border-radius: 2rem;
+        padding: 2rem;
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .auth-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .auth-title {
+        font-size: 28px;
+        color: #E1E0CC;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+
+      .auth-subtitle {
+        color: #888888;
+        font-size: 14px;
+        margin-bottom: 1rem;
+      }
+
+      .verify-email {
+        color: #DEDBC8;
+        font-size: 13px;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        word-break: break-all;
+      }
+
+      .code-inputs {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        justify-content: center;
+      }
+
+      .code-input {
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        background: #212121;
+        border: 1px solid #333333;
+        border-radius: 0.5rem;
+        color: #E1E0CC;
+        font-size: 20px;
+        font-weight: 600;
+        transition: border-color 0.2s;
+      }
+
+      .code-input:focus {
+        outline: none;
+        border-color: #DEDBC8;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background: #DEDBC8;
+        color: black;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+
+      .submit-btn:hover {
+        opacity: 0.9;
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .resend-section {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 13px;
+        color: #888888;
+      }
+
+      .resend-btn {
+        background: none;
+        border: none;
+        color: #DEDBC8;
+        cursor: pointer;
+        text-decoration: underline;
+        transition: color 0.2s;
+      }
+
+      .resend-btn:hover {
+        color: #E1E0CC;
+      }
+
+      .resend-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .timer {
+        color: #666666;
+        font-size: 12px;
+      }
+
+      .error-message {
+        background: #C0392B;
+        color: white;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 13px;
+        margin-bottom: 1rem;
+        display: none;
+      }
+
+      .error-message.show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-card">
+        <div class="auth-header">
+          <h1 class="auth-title">Подтвердить email</h1>
+          <p class="auth-subtitle">Мы отправили код на твой email</p>
+          <p class="verify-email" id="emailDisplay"></p>
+        </div>
+
+        <form id="verifyForm">
+          <div class="error-message" id="errorMessage"></div>
+
+          <div class="code-inputs">
+            <input
+              type="text"
+              class="code-input"
+              inputmode="numeric"
+              maxlength="1"
+              required
+            />
+            <input
+              type="text"
+              class="code-input"
+              inputmode="numeric"
+              maxlength="1"
+              required
+            />
+            <input
+              type="text"
+              class="code-input"
+              inputmode="numeric"
+              maxlength="1"
+              required
+            />
+            <input
+              type="text"
+              class="code-input"
+              inputmode="numeric"
+              maxlength="1"
+              required
+            />
+            <input
+              type="text"
+              class="code-input"
+              inputmode="numeric"
+              maxlength="1"
+              required
+            />
+            <input
+              type="text"
+              class="code-input"
+              inputmode="numeric"
+              maxlength="1"
+              required
+            />
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Подтвердить
+          </button>
+        </form>
+
+        <div class="resend-section">
+          <p>Не получил код?</p>
+          <button type="button" class="resend-btn" id="resendBtn">
+            Отправить заново
+          </button>
+          <p class="timer" id="timer"></p>
+        </div>
+      </div>
+    </div>
+
+    <script src="./auth.js"></script>
+  </body>
+</html>

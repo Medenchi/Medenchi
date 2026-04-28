@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MalinaPreza — Презентации с ИИ</title>
+    <meta name="description" content="Создавай красивые презентации с помощью ИИ за минуты. Бесплатно для всех школьников." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Instrument+Serif:ital@1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="hero-container">
+        <!-- Фоновое видео -->
+        <video
+          class="hero-video"
+          autoplay
+          loop
+          muted
+          playsinline
+        >
+          <source
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260405_170732_8a9ccda6-5cff-4628-b164-059c500a2b41.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <!-- Шум поверх видео -->
+        <div class="noise-overlay"></div>
+
+        <!-- Градиент -->
+        <div class="hero-gradient"></div>
+
+        <!-- Навбар -->
+        <nav class="navbar">
+          <div class="navbar-pill">
+            <ul class="nav-items">
+              <li><a href="#about">О проекте</a></li>
+              <li><a href="#features">Возможности</a></li>
+              <li><a href="#how">Как это работает</a></li>
+              <li><a href="#examples">Примеры</a></li>
+              <li><a href="/register">Войти</a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- Контент внизу -->
+        <div class="hero-content">
+          <div class="hero-grid">
+            <!-- Заголовок -->
+            <div class="hero-title-col">
+              <h1 class="hero-title">
+                <span class="word" style="animation-delay: 0s">Malina</span>
+                <span class="word" style="animation-delay: 80ms">Preza</span>
+              </h1>
+            </div>
+
+            <!-- Описание + кнопка -->
+            <div class="hero-text-col">
+              <p class="hero-description fade-in" style="animation-delay: 500ms">
+                MalinaPreza — бесплатный сервис для школьников. 
+                Создавай красивые, информативные презентации 
+                с помощью ИИ за считанные минуты. 
+                Никаких скучных шаблонов.
+              </p>
+
+              <a href="/register" class="cta-button fade-in" style="animation-delay: 700ms">
+                <span>Начать бесплатно</span>
+                <div class="button-circle">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+      <div class="about-card">
+        <p class="about-label">Для школьников</p>
+
+        <h2 class="about-title">
+          <span class="word-pull-up">Презентации,</span>
+          <span class="word-pull-up italic">которые удивляют.</span>
+          <span class="word-pull-up">Созданные ИИ за минуты.</span>
+        </h2>
+
+        <p class="about-text" id="about-text">
+          MalinaPreza создана для тех, кто устал от скучных презентаций. 
+          Наш ИИ находит актуальную информацию, структурирует её и оформляет 
+          в красивые слайды. Полностью бесплатно для всех школьников мира. 
+          Просто введи тему — и получи готовую презентацию за минуты.
+        </p>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features" id="features">
+      <div class="features-container">
+        <!-- Заголовок -->
+        <div class="features-header">
+          <h2 class="features-title">
+            <span>Профессиональные презентации для каждого школьника.</span>
+            <span class="text-gray">Бесплатно. Быстро. Красиво.</span>
+          </h2>
+        </div>
+
+        <!-- Карточки -->
+        <div class="features-grid">
+          <!-- Карточка 1: Видео -->
+          <div class="feature-card video-card">
+            <video
+              autoplay
+              loop
+              muted
+              playsinline
+            >
+              <source
+                src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div class="video-label">Твой холст для идей.</div>
+          </div>
+
+          <!-- Карточка 2 -->
+          <div class="feature-card">
+            <img 
+              src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171918_4a5edc79-d78f-4637-ac8b-53c43c220606.png&w=1280&q=85"
+              alt="icon"
+              class="feature-icon"
+            />
+            <div class="feature-header-inner">
+              <h3>Умная структура.</h3>
+              <span class="feature-number">01</span>
+            </div>
+            <ul class="feature-list">
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>ИИ сам строит план презентации</span>
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Логичная подача материала</span>
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Подходит для любого предмета</span>
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Адаптация под возраст и класс</span>
+              </li>
+            </ul>
+            <a href="#" class="learn-more">
+              Подробнее
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(-45deg)">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Карточка 3 -->
+          <div class="feature-card">
+            <img 
+              src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171741_ed9845ab-f5b2-4018-8ce7-07cc01823522.png&w=1280&q=85"
+              alt="icon"
+              class="feature-icon"
+            />
+            <div class="feature-header-inner">
+              <h3>Актуальная инфа.</h3>
+              <span class="feature-number">02</span>
+            </div>
+            <ul class="feature-list">
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Поиск свежих данных из интернета</span>
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Краткие и точные формулировки</span>
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Источники проверены ИИ</span>
+              </li>
+            </ul>
+            <a href="#" class="learn-more">
+              Подробнее
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(-45deg)">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Карточка 4 -->
+          <div class="feature-card">
+            <img 
+              src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171809_f56666dc-c099-4778-ad82-9ad4f209567b.png&w=1280&q=85"
+              alt="icon"
+              class="feature-icon"
+            />
+            <div class="feature-header-inner">
+              <h3>Красивый дизайн.</h3>
+              <span class="feature-number">03</span>
+            </div>
+            <ul class="feature-list">
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Никаких скучных шаблонов</span>
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Современный визуальный стиль</span>
+              </li>
+              <li>
+                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Экспорт в PDF и PPTX</span>
+              </li>
+            </ul>
+            <a href="#" class="learn-more">
+              Подробнее
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(-45deg)">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>

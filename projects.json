@@ -1,0 +1,62 @@
+{
+  "site": {
+    "brand": "РАЗРАБОТКА",
+    "domain": "denchy.cyou",
+    "name": "Denis",
+    "tagline": "Сайты • Telegram-боты • Автоматизация • Дизайн",
+    "about": "Разрабатываю сайты, Telegram-ботов и системы автоматизации. Создаю быстрые и современные решения для бизнеса и личных проектов.",
+    "stats": [
+      { "value": "{count}+", "label": "проектов выполнено" },
+      { "value": "99%",      "label": "довольных клиентов" },
+      { "value": "24ч",      "label": "средний ответ на сообщение" }
+    ]
+  },
+  "contacts": {
+    "telegram": "https://t.me/denchy",
+    "telegramHandle": "@denchy",
+    "email": "hi@denchy.cyou",
+    "portfolio": "https://denchy.cyou"
+  },
+  "tech": [
+    "HTML", "CSS", "JavaScript", "TypeScript", "Python", "Node.js",
+    "Telegram API", "MySQL", "PostgreSQL", "Docker", "Linux", "Nginx", "Git"
+  ],
+  "projects": [
+    {
+      "id": "tg-bot-orders",
+      "title": "Telegram Bot",
+      "subtitle": "Автоматизация заказов",
+      "description": "Бот для автоматического приёма заказов и уведомлений.",
+      "image": "",
+      "url": "#",
+      "tags": ["Python", "Telegram API", "PostgreSQL"]
+    },
+    {
+      "id": "portfolio-designer",
+      "title": "Portfolio",
+      "subtitle": "Сайт для дизайнера",
+      "description": "Минималистичный сайт-портфолио для дизайнера.",
+      "image": "",
+      "url": "#",
+      "tags": ["HTML", "CSS", "JavaScript"]
+    },
+    {
+      "id": "hosting-panel",
+      "title": "Hosting Panel",
+      "subtitle": "Панель управления сервером",
+      "description": "Удобная панель для управления серверами и сайтами.",
+      "image": "",
+      "url": "#",
+      "tags": ["TypeScript", "Node.js", "Docker", "Nginx"]
+    },
+    {
+      "id": "cafe-system",
+      "title": "Cafe System",
+      "subtitle": "Система выдачи кодов",
+      "description": "Система генерации и выдачи промокодов для кафе.",
+      "image": "",
+      "url": "#",
+      "tags": ["Node.js", "PostgreSQL"]
+    }
+  ]
+}
